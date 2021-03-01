@@ -21,6 +21,7 @@ mongoose
 // SERVER START
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
+  // heroku sets its own env variable for port, so setting port as process.env.port is mandatory!
   console.log(`App running on port ${port}...`);
 });
 
@@ -37,5 +38,12 @@ process.on('uncaughtException', (err) => {
   console.log(err);
   server.close(() => {
     process.exit(1);
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM RECEIVED, Shutting down gracefully');
+  server.close(() => {
+    console.log('Process terminated!');
   });
 });

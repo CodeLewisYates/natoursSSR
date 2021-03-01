@@ -19,6 +19,9 @@ const bookingRouter = require('./routes/bookingRoutes');
 
 // GLOBAL MIDDLEWARE
 const app = express();
+
+app.enable('trust proxy');
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 // Serving static files
