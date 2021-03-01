@@ -33,6 +33,7 @@ const sendErrorDev = (error, req, res) => {
     });
   } else {
     // RENDERED WEBSITE
+    console.error('ERROR', error);
     res.status(error.statusCode).render('error', {
       title: 'Something went wrong!',
       msg: error.message,
@@ -41,7 +42,6 @@ const sendErrorDev = (error, req, res) => {
 };
 
 const sendErrorProd = (error, req, res) => {
-  console.log(error);
   // API
   if (req.originalUrl.startsWith('/api')) {
     // Operational - user generated error, send error feedback to client
@@ -66,6 +66,7 @@ const sendErrorProd = (error, req, res) => {
     });
   }
   // Programming or other unkown error, don't want to leak details to client
+  console.error('ERROR', error);
   return res.status(error.statusCode).render('error', {
     title: 'Something went wrong!',
     msg: 'Please try again later.',

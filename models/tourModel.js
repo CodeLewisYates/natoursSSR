@@ -157,11 +157,11 @@ toursSchema.pre(/^find/, function (next) {
   next();
 });
 
-toursSchema.post(/^find/, function (docs, next) {
-  console.log(Date.now() - this.start);
-  //console.log(docs);
-  next();
-});
+// toursSchema.post(/^find/, function (docs, next) {
+//   console.log(Date.now() - this.start);
+//   //console.log(docs);
+//   next();
+// });
 
 toursSchema.pre(/^find/, function (next) {
   this.populate({
